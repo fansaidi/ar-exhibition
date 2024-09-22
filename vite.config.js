@@ -1,8 +1,10 @@
+import { defineConfig } from 'vite'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
-export default {
+// https://vitejs.dev/config/
+export default defineConfig({
     plugins: [
         basicSsl()
     ],
     base: '/ar-exhibition/'
-}
+})
