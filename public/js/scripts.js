@@ -23,4 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("target lost");
         document.querySelector('#fasaKariesGigi').pause();
     });
+
+    // detect click event
+    const examplePlane = document.querySelector('#button-1');
+    examplePlane.addEventListener("click", event => {
+        document.querySelector('#fasaKariesGigi').currentTime = 2;
+    });
 });

@@ -17,7 +17,7 @@
   </script>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.min.js"></script>
-  <script src="/js/play-on-click.js"></script>
+  <script src="/js/scripts.js"></script>
 
 </head>
 
@@ -31,11 +31,14 @@
         scale="0.01 0.01 0.01"></a-mixin>
     </a-assets>
 
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;"
+      raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
 
     <a-entity id="arTarget" mindar-image-target="targetIndex: 0"
       renderer="colorManagement: true, physicallyCorrectLights">
       <a-entity text="value: Karies Gigi;" position="0 0 0.1"></a-entity>
+      <a-cylinder id="button-1" class="clickable" color="crimson" height="0.1" radius="0.5" position="0 0 0.1"
+        scale="0.2 0.2 0.2" rotation="90 0 0"></a-cylinder>
       <a-video src="#fasaKariesGigi" position="0 0 0" width="0.9" height="1.555">
         <a-entity mixin="marker" position="-0.5 0 0"></a-entity>
         <a-entity mixin="marker" position="-0.25 0 0"></a-entity>
