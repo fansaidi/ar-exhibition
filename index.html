@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AR Exhibition</title>
   <!-- Google tag (gtag.js) -->
@@ -22,11 +23,30 @@
 </head>
 
 <body>
+  <div style="position: absolute; bottom: 0; width: 100%; z-index: 1000; display: flex; justify-content: center;">
+    <button id="button-1" type="button" style="
+    margin-bottom: 20px; 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    background-color: #f0f0f0; 
+    border: none; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  ">
+      <span class="material-symbols-outlined">
+        volume_up
+      </span>
+    </button>
+  </div>
   <a-scene mindar-image="imageTargetSrc: ./assets/targets.mind;" xr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false" autoStart="false">
     <a-assets>
       <video id="fasaKariesGigi"
-        src="https://res.cloudinary.com/dzwzi3idm/video/upload/v1727084833/fasa_karies_gigi_vqzprh.mp4" playsinline></video>
+        src="https://res.cloudinary.com/dzwzi3idm/video/upload/v1727084833/fasa_karies_gigi_vqzprh.mp4"
+        onloadedmetadata="this.muted = true" muted></video>
       <a-mixin id="marker" geometry="primitive: box" material="color: magenta; shader: flat; opacity: 0.5"
         scale="0.01 0.01 0.01"></a-mixin>
     </a-assets>
@@ -37,15 +57,9 @@
     <a-entity id="arTarget" mindar-image-target="targetIndex: 0"
       renderer="colorManagement: true, physicallyCorrectLights">
       <a-video src="#fasaKariesGigi" position="0 -0.01 0" width="0.9" height="1.555">
-        <!-- <a-entity mixin="marker" position="-0.5 0 0"></a-entity>
-        <a-entity mixin="marker" position="-0.25 0 0"></a-entity>
-        <a-entity mixin="marker" position="0 0 0"></a-entity>
-        <a-entity mixin="marker" position="0.25 0 0"></a-entity>
-        <a-entity mixin="marker" position="0.5 0 0"></a-entity> -->
       </a-video>
     </a-entity>
   </a-scene>
-  <button>Helo</button>
 </body>
 
 </html>

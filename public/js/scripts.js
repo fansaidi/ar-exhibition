@@ -1,32 +1,37 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const sceneEl = document.querySelector('a-scene');
+    const arTarget = document.querySelector('#arTarget');
+    const audioBtn = document.querySelector('#button-1');
     let arSystem;
-    sceneEl.addEventListener('loaded', function () {
+
+    const updateAudioIcon = (isMuted) => {
+        audioBtn.innerHTML = isMuted 
+            ? "<span class='material-symbols-outlined'>volume_off</span>"
+            : "<span class='material-symbols-outlined'>volume_up</span>";
+    };
+
+    const toggleAudioMute = () => {
+        const fasaKariesGigi = document.querySelector('#fasaKariesGigi');  // Re-query inside
+        fasaKariesGigi.muted = !fasaKariesGigi.muted;
+        updateAudioIcon(fasaKariesGigi.muted);
+    };
+
+    sceneEl.addEventListener('loaded', () => {
         arSystem = sceneEl.systems["mindar-image-system"];
     });
-    const arTarget = document.querySelector('#arTarget');
-    // arReady event triggered when ready
-    sceneEl.addEventListener("arReady", (event) => {
-        // console.log("MindAR is ready")
-    });
-    // arError event triggered when something went wrong. Mostly browser compatbility issue
-    sceneEl.addEventListener("arError", (event) => {
-        // console.log("MindAR failed to start")
-    });
-    // detect target found
-    arTarget.addEventListener("targetFound", event => {
-        console.log("target found");
-        document.querySelector('#fasaKariesGigi').play();
-    });
-    // detect target lost
-    arTarget.addEventListener("targetLost", event => {
-        console.log("target lost");
-        document.querySelector('#fasaKariesGigi').pause();
+
+    arTarget.addEventListener("targetFound", () => {
+        console.log("Target found");
+        const fasaKariesGigi = document.querySelector('#fasaKariesGigi');  // Re-query inside
+        fasaKariesGigi.muted = false;
+        fasaKariesGigi.play();
     });
 
-    // detect click event
-    const examplePlane = document.querySelector('#button-1');
-    examplePlane.addEventListener("click", event => {
-        document.querySelector('#fasaKariesGigi').currentTime = 2;
+    arTarget.addEventListener("targetLost", () => {
+        console.log("Target lost");
+        const fasaKariesGigi = document.querySelector('#fasaKariesGigi');  // Re-query inside
+        fasaKariesGigi.pause();
     });
+
+    audioBtn.addEventListener("click", toggleAudioMute);
 });
