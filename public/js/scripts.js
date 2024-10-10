@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let arSystem;
 
     const updateAudioIcon = (isMuted) => {
-        audioBtn.innerHTML = isMuted 
+        audioBtn.innerHTML = isMuted
             ? "<span class='material-symbols-outlined'>volume_off</span>"
             : "<span class='material-symbols-outlined'>volume_up</span>";
     };
@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     arTarget.addEventListener("targetFound", () => {
         console.log("Target found");
         const fasaKariesGigi = document.querySelector('#fasaKariesGigi');  // Re-query inside
-        fasaKariesGigi.muted = false;
         fasaKariesGigi.play();
     });
 
@@ -34,4 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     audioBtn.addEventListener("click", toggleAudioMute);
+
+    const fasaKariesGigi = document.querySelector('#fasaKariesGigi');
+    fasaKariesGigi.addEventListener('loadedmetadata', () => {
+        updateAudioIcon(fasaKariesGigi.muted);
+    });
 });
